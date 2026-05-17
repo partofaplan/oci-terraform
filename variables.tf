@@ -21,9 +21,9 @@ variable "private_key_path" {
 }
 
 variable "region" {
-  description = "OCI region identifier (e.g. us-ashburn-1)."
+  description = "OCI region identifier (e.g. us-chicago-1)."
   type        = string
-  default     = "us-ashburn-1"
+  default     = "us-chicago-1"
 }
 
 # ── Compartment ───────────────────────────────────────────────────────────────
@@ -31,6 +31,12 @@ variable "region" {
 variable "compartment_ocid" {
   description = "OCID of the compartment where all resources are created."
   type        = string
+}
+
+variable "sandbox_compartment_ocid" {
+  description = "OCID of the sandbox compartment for demo_sandbox_bucket. Defaults to compartment_ocid when not set."
+  type        = string
+  default     = null
 }
 
 # ── Project metadata ──────────────────────────────────────────────────────────
@@ -52,72 +58,10 @@ variable "environment" {
   }
 }
 
-# ── Networking ────────────────────────────────────────────────────────────────
-
-variable "vcn_cidr" {
-  description = "CIDR block for the VCN."
-  type        = string
-  default     = "10.0.0.0/16"
-}
-
-variable "public_subnet_cidr" {
-  description = "CIDR block for the public subnet."
-  type        = string
-  default     = "10.0.1.0/24"
-}
-
-variable "private_subnet_cidr" {
-  description = "CIDR block for the private subnet."
-  type        = string
-  default     = "10.0.2.0/24"
-}
-
-# ── Compute ───────────────────────────────────────────────────────────────────
-
-variable "instance_shape" {
-  description = "Compute shape for instances (Flex shapes recommended)."
-  type        = string
-  default     = "VM.Standard.E4.Flex"
-}
-
-variable "instance_ocpus" {
-  description = "Number of OCPUs for Flex shapes."
-  type        = number
-  default     = 1
-}
-
-variable "instance_memory_gb" {
-  description = "Memory in GB for Flex shapes."
-  type        = number
-  default     = 16
-}
-
-variable "instance_image_id" {
-  description = "OCID of the platform image (OS) for compute instances."
-  type        = string
-}
-
-variable "ssh_public_key" {
-  description = "SSH public key to authorise on compute instances."
-  type        = string
-}
-
-variable "instance_count" {
-  description = "Number of compute instances to create."
-  type        = number
-  default     = 1
-}
-
 # ── Storage ───────────────────────────────────────────────────────────────────
 
 variable "bucket_access_type" {
   description = "Visibility of the object storage bucket (NoPublicAccess | ObjectRead | ObjectReadWithoutList)."
   type        = string
   default     = "NoPublicAccess"
-}
-
-variable "block_volume_size_gb" {
-  description = "Size of each block volume in GB."
-  type        = number
-  default     = 50
 }

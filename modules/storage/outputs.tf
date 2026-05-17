@@ -8,7 +8,7 @@ output "bucket_namespace" {
   value       = data.oci_objectstorage_namespace.this.namespace
 }
 
-output "block_volume_ids" {
-  description = "OCIDs of the block volumes."
-  value       = [oci_core_volume.this.id]
+output "sandbox_bucket_name" {
+  description = "Name of the sandbox bucket."
+  value       = oci_objectstorage_bucket.sandbox.name
 }
