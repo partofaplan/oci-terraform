@@ -1,0 +1,22 @@
+# Terraform state and credentials
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.auto.tfvars
+crash.log
+crash.*.log
+
+# OCI credentials (never commit these)
+*.pem
+*.key
+oci_api_key*
+
+# Editor artifacts
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
