@@ -58,6 +58,58 @@ variable "environment" {
   }
 }
 
+# ── Networking ────────────────────────────────────────────────────────────────
+
+variable "vcn_cidr" {
+  description = "CIDR block for the VCN."
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "api_subnet_cidr" {
+  description = "CIDR for the OKE API endpoint subnet."
+  type        = string
+  default     = "10.0.0.0/28"
+}
+
+variable "nodes_subnet_cidr" {
+  description = "CIDR for the worker node subnet."
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "lb_subnet_cidr" {
+  description = "CIDR for the load balancer subnet."
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+# ── OKE ───────────────────────────────────────────────────────────────────────
+
+variable "node_shape" {
+  description = "Compute shape for OKE worker nodes."
+  type        = string
+  default     = "VM.Standard3.Flex"
+}
+
+variable "node_ocpus" {
+  description = "OCPUs per worker node (Flex shapes only)."
+  type        = number
+  default     = 1
+}
+
+variable "node_memory_gb" {
+  description = "Memory in GB per worker node (Flex shapes only). Minimum 6 GB for Kubernetes."
+  type        = number
+  default     = 6
+}
+
+variable "node_count" {
+  description = "Total number of worker nodes."
+  type        = number
+  default     = 3
+}
+
 # ── Storage ───────────────────────────────────────────────────────────────────
 
 variable "bucket_access_type" {
